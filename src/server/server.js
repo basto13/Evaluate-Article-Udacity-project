@@ -78,13 +78,13 @@ app.post('/results', async (req, res) => {
 
 app.post('/post-my-data', async (req, res) => {
     const data = await req.body;
-    processAction(data.inputText);
-    res.send({})
+    await processAction(data.inputText);
+    res.send({});
 });
 
 const baseURL = 'https://api.meaningcloud.com/sentiment-2.1';
 
-function processAction(inputText) {
+async function processAction(inputText) {
     // get input values (Personal API Key for OpenWeatherMap API_)
     const formdata = new FormData();
     formdata.append("key", process.env.API_KEY);
@@ -96,15 +96,13 @@ function processAction(inputText) {
         redirect: 'follow'
     };
     //call function to get Web API Coordination Data
-    getInfoResponse(baseURL, requestOptions)
-        // add data to post request
-        .then(function (data) {
-            const subjectivity = data.subjectivity
-            const text = data.sentence_list[7].text
-            const agreement = data.agreement
-            console.log('info received from response', agreement, subjectivity, text)
-            postDataMethod({ subjectivity: subjectivity, text: text, agreement: agreement })
-        })
+    const data = await getInfoResponse(baseURL, requestOptions)
+
+    const subjectivity = data.subjectivity
+    const text = data.sentence_list[7].text
+    const agreement = data.agreement
+    console.log('info received from response', agreement, subjectivity, text)
+    postDataMethod({ subjectivity: subjectivity, text: text, agreement: agreement })
 }
 
 const getInfoResponse = async (baseURL, requestOptions) => {

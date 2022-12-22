@@ -13,7 +13,7 @@ function isValidUrl(inputText) {
 function submitAction(event) {
     event.preventDefault();
     const inputText = document.getElementById('name').value;
-    processAction(inputText, () => updateUI());
+    processAction(inputText, updateUI);
 }
 
 async function processAction(inputText, callback) {
@@ -23,7 +23,7 @@ async function processAction(inputText, callback) {
     }
 
     await postData('http://localhost:8000/post-my-data', { inputText })
-    callback();
+    await callback();
 }
 
 
