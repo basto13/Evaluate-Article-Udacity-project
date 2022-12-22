@@ -1,0 +1,72 @@
+body {
+    background: #c9f6a4;
+    line-height: 1;
+    font-family: sans-serif;
+}
+
+.app {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "top"
+        "middle"
+        "submit"
+        "bottom";
+    background: #ef9a9d;
+}
+
+.header {
+    display: flex;
+    grid-area: top;
+    text-align: center;
+    font-size: 2em;
+    padding: 1em 1em;
+    color: #212122;
+    font-weight: bold;
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+.holder {
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
+
+// button
+.submit {
+    display: flex;
+    justify-content: center;
+    grid-area: submit;
+    padding: 0.5em;
+}
+
+button{
+    cursor: pointer;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 30px;
+    width: 150px;
+    height: 90px;
+    background: #4663c4;
+}
+button:active{background:orange;}
+
+// input sections
+input {
+    padding: 0.5em;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    width: auto;
+    background: #eda1f2;
+}
+
+textarea {
+    height: 300px;
+    padding: 0.5em;
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    width: 90%;
+    background: #eda1f2;
+}
